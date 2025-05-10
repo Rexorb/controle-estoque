@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layouts/base :: layout(~{::content})}">
+<body>
+    <div th:fragment="content">
+        <div class="jumbotron">
+            <h1 class="display-4" th:text="${mensagem}">Bem-vindo!</h1>
+            <p class="lead">Sistema de gerenciamento de estoque desenvolvido com Spring Boot</p>
+            <hr class="my-4">
+            <p>Data atual: <span th:text="${dataAtual}">01/01/2023</span></p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Acessar Sistema</a>
+        </div>
+    </div>
+</body>
+</html>
