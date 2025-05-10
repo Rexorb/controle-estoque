@@ -1,5 +1,5 @@
 # controle-estoque
-Sistema de controle de estoque feito com Java Springboot e Thymeleaf.
+Sistema de controle de estoque feito com Java Springboot e Thymeleaf.<br>
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 
 
