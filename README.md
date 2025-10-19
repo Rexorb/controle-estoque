@@ -4,7 +4,7 @@ Sistema de controle de estoque feito com Java Springboot e Thymeleaf.<br>
 
 
 ## 🚀 Quickstart
-git clone https://github.com/Rexorb/controle-estoque.git
+git clone https://github.com/Rexorb/controle-estoque.git <br>
 cd controle-estoque
 Terminal: Bash -> ./mvnw spring-boot:run
 
