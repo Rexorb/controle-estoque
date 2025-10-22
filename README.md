@@ -1,7 +1,10 @@
+Desenvolvedores:<br>
+Roberto Henrique dos Santos<br>
+Ruan Santos
+
 # controle-estoque
 Sistema de controle de estoque feito com Java Springboot e Thymeleaf.<br>
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-
 
 ## 🚀 Quickstart
 git clone https://github.com/Rexorb/controle-estoque.git <br>
