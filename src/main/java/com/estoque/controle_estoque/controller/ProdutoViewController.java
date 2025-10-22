@@ -22,8 +22,8 @@ public class ProdutoViewController {
     }
 
     // ✅ Método de teste
-    @GetMapping("/teste")
-    public String testeSimples() {
-        return "listar";
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }

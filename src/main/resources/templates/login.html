@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="fragments/layout :: head (title='Acesso ao Sistema')"></head>
+</head>
+<body>
+    
+    <div class="login-container">
+        
+        <div class="left-panel">
+            <div class="logo-area">
+                <img
+                    th:src="@{/images/Grapium-Logo.png}"
+                    class="img-logo"
+                    alt="Logo Grapium"
+                />
+                
+                <img
+                    th:src="@{/images/avatarVector.png}"
+                    class="img-avatar"
+                    alt="Ilustração de Inventário"
+                />
+            </div>
+            
+        </div>
+
+<div class="right-panel">
+            
+            <div class="form-content">
+                <div class="form-wrapper">
+                    
+                    <p class="login-instruction">Por favor insira suas credenciais</p>
+                    <h2 class="welcome-text">Bem vindo</h2>
+
+                    <div th:if="${param.error}" class="alert-message error">
+                        Usuário ou senha inválidos.
+                    </div>
+                    <div th:if="${param.logout}" class="alert-message success">
+                        Você foi desconectado com sucesso.
+                    </div>
+                    
+                    <form th:action="@{/login}" method="post" class="login-form">
+                        
+                        <div class="input-group">
+                            <span class="input-icon"><i class="fas fa-user"></i></span>
+                            <input type="text" id="username" name="username" class="custom-input" placeholder="Nome de usuário" required>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-icon"><i class="fas fa-lock"></i></span>
+                            <input type="password" id="password" name="password" class="custom-input" placeholder="Senha" required>
+                        </div>
+
+                        <button type="submit" class="btn-login-custom">Login</button>
+                    </form>
+
+                    <p class="create-account-text">Não possui uma conta? <a href="#" class="create-account-link">Crie uma aqui</a></p>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+        
+    </div>
+
+    <div th:replace="fragments/layout :: scripts"></div>
+</body>
+</html>
