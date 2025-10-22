@@ -12,8 +12,8 @@ Sistema **robusto e moderno** para gestão de estoque e movimentações, desenvo
 
 | Nome | Função |
 | :--- | :--- |
-| **Roberto Henrique dos Santos** | Desenvolvedor Full Stack |
-| **Ruan Santos** | Desenvolvedor Full Stack |
+| **Roberto Henrique dos Santos** | Desenvolvedor Front-end |
+| **Ruan Santos** | Desenvolvedor Back-end |
 
 ---
 
