@@ -2,7 +2,7 @@ Desenvolvedores:<br>
 Roberto Henrique dos Santos<br>
 Ruan Santos
 
-# controle-estoque
+# Grapium
 Sistema de controle de estoque feito com Java Springboot e Thymeleaf.<br>
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
 
