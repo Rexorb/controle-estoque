@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <head th:replace="fragments/layout :: head (title='Listagem de Produtos')"></head>
+  </head>
+  <body>
+    <div th:replace="fragments/sidebar :: sidebar_full ('produtos')"></div>
+
+    <div class="main-content">
+      <header class="main-header">
+        <h1 class="page-title">Produtos em Estoque</h1>
+
+        <a th:href="@{/produtos/novo}" class="btn-primary-action">
+          <i class="fas fa-plus"></i> Adicionar Produto
+        </a>
+      </header>
+
+      <div class="filter-search-area"></div>
+
+      <section class="data-table-section">
+        <div th:if="${produtos.empty}" class="alert-message info">
+          Nenhum produto cadastrado.
+        </div>
+
+        <table th:unless="${produtos.empty}" class="product-table">
+          <thead>
+            <tr>
+              <th style="width: 10%">ID</th>
+              <th style="width: 35%">Nome</th>
+              <th style="width: 15%">Quantidade</th>
+              <th style="width: 20%">Preço</th>
+              <th style="width: 20%">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="produto : ${produtos}">
+              <td th:text="${produto.id}">1</td>
+              <td th:text="${produto.nome}">Nome do Produto</td>
+              <td th:text="${produto.quantidade}">99</td>
+              <td th:text="${#numbers.formatCurrency(produto.preco)}">R$ 5,99</td>
+              <td>
+                <a
+                  th:href="@{/produtos/editar/{id}(id=${produto.id})}"
+                  class="btn-action edit"
+                >
+                  <i class="fas fa-pen"></i> Editar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div th:replace="fragments/layout :: scripts"></div>
+  </body>
+</html>

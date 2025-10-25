@@ -1,0 +1,187 @@
+/* 1. IMPORTAÇÃO DE FONTES */
+/* Ajuste as URLs conforme necessário. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Jost:wght@100;700&family=Roboto+Mono:wght@400;700&display=swap");
+
+/* 2. VARIÁVEIS CSS */
+:root {
+  --purple-main: #432a5b; /* O roxo escuro do painel esquerdo */
+  --purple-light: #7960ff;
+  --font-logo: "KyivType Sans", sans-serif; /* Confirme se esta fonte está carregada! */
+  --font-slogan: "Inter", sans-serif;
+  --font-body: "Jost", sans-serif;
+  --font-details: "Roboto Mono", "sans-serif";
+}
+
+/* 3. LAYOUT PRINCIPAL (DIVISÃO DE TELA) */
+body {
+  margin: 0;
+  padding: 0;
+  /* Remove a cor de fundo aqui, pois cada painel terá a sua */
+}
+
+.login-container {
+  /* Usa Flexbox para dividir a tela em duas colunas */
+  display: flex;
+  min-height: 100vh; /* Garante que ocupe a altura total */
+  width: 100vw; /* Garante a largura total */
+}
+
+/* 4. PAINEL ESQUERDO (BRANDING) - A coluna Roxo */
+.left-panel {
+  width: 40%; /* 40% da tela para a coluna esquerda */
+  background-color: var(--purple-main);
+  color: white;
+  padding: 3rem;
+
+  /* Configura o Flexbox VERTICAL para alinhar os elementos (logo, imagem, slogan) */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Alinha o conteúdo (logo/imagem) horizontalmente no centro */
+  justify-content: space-between; /* Espalha o conteúdo (logo no topo, imagem no centro, slogan embaixo) */
+  text-align: center;
+}
+
+/* 5. ÁREA DE LOGO E IMAGEM */
+.logo-area {
+  /* Define o Flexbox para que a imagem do avatar fique ABAIXO do logo */
+  display: flex;
+  flex-direction: column; /* FORÇA a verticalização */
+  align-items: center; /* Centraliza horizontalmente */
+  width: 100%;
+}
+
+.img-logo {
+  /* Ajuste o tamanho da imagem do logo para caber no 40% da tela */
+  width: 400px; /* Tamanho ajustado para web */
+  height: auto;
+  margin-top: 10rem;
+}
+
+.img-avatar {
+  /* Ajusta o tamanho da imagem principal */
+  width: 400px;
+  height: auto;
+  /*margin-top: 3rem; /* Espaço entre o logo e a imagem */
+}
+
+.login-footer {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 8. PAINEL DIREITO (FORMULÁRIO) */
+.right-panel {
+  width: 50%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5rem;
+}
+
+.form-content {
+    flex-grow: 1; /* Faz esta área ocupar todo o espaço restante e centraliza o formulário */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-wrapper {
+  max-width: 380px; /* Largura ideal para o formulário */
+  width: 90%;
+  margin: 0;
+}
+
+
+
+.login-instruction {
+  font-family: var(--font-details);
+  opacity: 0.5;
+  color: #000000;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-text {
+  font-family: var(--font-details);
+  font-weight: 500;
+  font-size: 2.2rem;
+  color: black;
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+}
+
+/* 9. ESTILO DOS CAMPOS DE INPUT (Texto e Senha) */
+.input-group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 1.5rem;
+
+  /* Replicando o visual suave do mockup */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  transition: all 0.2s ease;
+}
+
+.input-group:focus-within {
+  border-color: var(--purple-light); /* Borda fica mais visível no foco */
+  box-shadow: 0 0 8px rgba(121, 96, 255, 0.3);
+}
+
+.input-icon {
+  padding: 0 1rem;
+  color: #a0aec0; /* Cor cinza suave para o ícone */
+  font-size: 1rem;
+}
+
+.custom-input {
+  flex-grow: 1;
+  border: none;
+  outline: none; /* Remove o contorno padrão ao focar */
+  height: 100%;
+  padding: 0.5rem 0.5rem 0.5rem 0; /* Ajusta o padding para que o ícone tenha espaço */
+  font-family: var(--font-details);
+  font-size: 1rem;
+  background: none; /* Garante que o input seja transparente */
+}
+
+/* 10. BOTÃO DE LOGIN */
+.btn-login-custom {
+  width: 100%;
+  background-color: var(--purple-light);
+  border: none;
+  color: white;
+  font-weight: 200;
+  font-family: var(--font-details);
+  padding: 0.8rem 0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn-login-custom:hover {
+  background-color: #5b48df;
+}
+
+/* 11. LINK DE CRIAÇÃO DE CONTA */
+.create-account-text {
+  font-family: var(--font-details);
+  font-size: 1.1rem;
+  font-weight: 200;
+  text-align: center;
+  margin-top: 2rem;
+  width: 390px;
+}
+
+.create-account-link {
+  color: var(--purple-light);
+  font-weight: 500;
+  text-decoration: none;
+  width: 100%;
+}

@@ -1,0 +1,287 @@
+/* 1. IMPORTAÇÃO DE VARIÁVEIS E FONTES */
+/* Importa as variáveis de cor definidas no seu style.css */
+@import url('style.css'); 
+
+/* 2. LAYOUT GERAL (Sidebar + Conteúdo) */
+body {
+    display: flex; /* Habilita a divisão de tela */
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5; /* Fundo cinza claro para o corpo da aplicação */
+    font-family: var(--font-body);
+    color: #333;
+    min-height: 100vh;
+}
+
+.img-logo-listar{
+    width:auto;
+    height: 60px;
+}
+
+/* 3. BARRA LATERAL (SIDEBAR) */
+.sidebar {
+    width: 250px;
+    min-height: 100vh; /* Ocupa a altura total da tela */
+    background-color: var(--purple-main); /* Roxo Escuro */
+    color: white;
+    position: fixed; /* Fixa a sidebar */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o logo para cima e o usuário para baixo */
+}
+
+.sidebar-header {
+    padding: 1.5rem 1rem;
+    font-family: var(--font-logo); /* Fonte do Logo Grapium */
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 4. NAVEGAÇÃO E LINKS */
+.sidebar-nav {
+    flex-grow: 1; /* Ocupa o espaço central */
+    padding: 1rem 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-link i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.nav-link:hover {
+    background-color: #533a6e; /* Roxo ligeiramente mais claro no hover */
+    color: white;
+}
+
+/* Link Ativo */
+.nav-link.active {
+    background-color: #533a6e; 
+    border-left: 5px solid var(--purple-light); /* Destaque com o roxo claro */
+    color: white;
+    padding-left: 1rem; /* Compensa a borda */
+}
+
+/* 5. RODAPÉ DA SIDEBAR (Usuário e Logout) */
+.sidebar-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #7960FF; /* Roxo claro */
+    margin-right: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* 6. CONTEÚDO PRINCIPAL */
+.main-content {
+    flex-grow: 1;
+    margin-left: 250px; /* Compensa a largura da sidebar fixa */
+    padding: 2rem;
+    width: calc(100% - 250px); /* Garante que não ultrapasse 100% */
+}
+
+/* 7. HEADER PRINCIPAL */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: var(--font-slogan);
+}
+
+/* Botão de Ação Primária */
+.btn-primary-action {
+    background-color: var(--purple-light); /* Roxo Claro */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary-action:hover {
+    background-color: #5B48DF; 
+}
+/* ... Estilos de Tabela serão adicionados no próximo passo ... */
+
+/* 8. ESTILIZAÇÃO DE TABELAS (Para listar.html) */
+.product-table {
+    width: 100%;
+    border-collapse: separate; /* Permite o uso de border-spacing */
+    border-spacing: 0 10px; /* Espaçamento vertical entre as linhas */
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 8px; /* Cantos arredondados no contêiner da tabela */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+}
+
+/* Cabeçalho da Tabela */
+.product-table thead th {
+    text-align: left;
+    padding: 1rem 1.5rem;
+    color: #6c757d; /* Cor cinza sutil para os títulos das colunas */
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Corpo da Tabela */
+.product-table tbody tr {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s;
+}
+
+.product-table tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.product-table tbody td {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    color: #333;
+    font-family: var(--font-body); 
+    font-weight: 400;
+}
+
+/* Estilo específico para o ID e Quantidade (usando a fonte de detalhes) */
+.product-table tbody td:nth-child(1), /* ID */
+.product-table tbody td:nth-child(3) { /* Quantidade */
+    font-family: var(--font-details); /* Roboto Mono, para um visual técnico */
+    font-weight: 700;
+    color: var(--purple-main);
+}
+
+/* ESTILO DOS BOTÕES DE AÇÃO NA TABELA */
+.btn-action {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    margin-right: 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.btn-action.edit {
+    background-color: #e6e6fa; /* Lilás bem suave */
+    color: var(--purple-light);
+}
+
+.btn-action.edit:hover {
+    background-color: #d1c4e9;
+}
+
+
+/* 9. ESTILOS DE STATUS (Tags Coloridas) */
+.status-tag {
+    display: inline-block;
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.status-tag.in-stock {
+    background-color: #e8f5e9; /* Verde claro */
+    color: #43a047; /* Verde escuro */
+}
+
+.status-tag.low-stock {
+    background-color: #fffde7; /* Amarelo muito claro */
+    color: #ffb300; /* Laranja/Amarelo */
+}
+
+.status-tag.out-of-stock {
+    background-color: #ffebee; /* Vermelho muito claro */
+    color: #e53935; /* Vermelho */
+}
+
+/* --- 10. ESTILOS DE FORMULÁRIO (Para cadastro.html) --- */
+
+.form-container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 8px; /* Mantendo o padrão arredondado */
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus {
+    border-color: var(--purple-light);
+    box-shadow: 0 0 0 3px rgba(121, 96, 255, 0.25);
+    outline: none;
+}
+
+/* Botão de Cancelar/Secundário */
+.btn-secondary-action {
+    background-color: #e9ecef;
+    color: #495057;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary-action:hover {
+    background-color: #dee2e6;
+}
+
+/* O botão primário (.btn-primary-action) já está definido no app.css */
