@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # 1. Serviço da Aplicação Spring Boot
+  app:
+    # Usa o Dockerfile que criamos
+    build: .
+    # Mapeia a porta do container (8080) para a porta da sua máquina (8080)
+    ports:
+      - "8080:8080"
+    # Faz com que a aplicação espere o banco de dados estar pronto
+    depends_on:
+      - db
+    # Variáveis de ambiente que sobrescrevem o application.properties para usar o serviço 'db'
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/grapium_db
+      SPRING_DATASOURCE_USERNAME: user_grapium
+      SPRING_DATASOURCE_PASSWORD: password_grapium
+
+  # 2. Serviço do Banco de Dados PostgreSQL
+  db:
+   
+    image: postgres:14-alpine
+    restart: always
+    
+    environment:
+      POSTGRES_USER: user_grapium
+      POSTGRES_PASSWORD: password_grapium
+      POSTGRES_DB: grapium_db
+    
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+
+volumes:
+  postgres_data:
