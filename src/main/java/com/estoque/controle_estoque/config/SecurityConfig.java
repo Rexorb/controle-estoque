@@ -14,7 +14,7 @@ import com.estoque.controle_estoque.util.JwtFiltro;
 public class SecurityConfig {
     //Feijão da segurança
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFiltro jwtFiltro) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, JwtFiltro jwtFiltro) throws Exception {
         http
             .authorizeHttpRequests(requests -> requests
                 

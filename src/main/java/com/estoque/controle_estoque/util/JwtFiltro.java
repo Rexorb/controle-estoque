@@ -46,6 +46,7 @@ public class JwtFiltro implements Filter{
                 ((HttpServletResponse) resp).sendError(HttpServletResponse.SC_BAD_REQUEST,"Token Ausente");
             }
         }
+        chain.doFilter(req, resp);
     }
     
 }
