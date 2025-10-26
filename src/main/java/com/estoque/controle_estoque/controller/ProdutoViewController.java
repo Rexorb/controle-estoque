@@ -7,9 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.estoque.controle_estoque.model.Login;
+import com.estoque.controle_estoque.model.Usuario;
 import com.estoque.controle_estoque.service.CriptoService;
 import com.estoque.controle_estoque.service.LoginService;
 import com.estoque.controle_estoque.service.ProdutoService;
+import com.estoque.controle_estoque.service.UsuarioService;
+import com.estoque.controle_estoque.util.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,6 +25,7 @@ public class ProdutoViewController {
 
     private final ProdutoService service;
     private final LoginService loginService;
+    private final UsuarioService usuarioService;
     private final CriptoService criptoService;
 
 
@@ -50,7 +54,14 @@ public class ProdutoViewController {
         boolean ValidLogin = criptoService.verificar(entity.getPassword(), mached.getPassword());
         
         if(ValidLogin){
-            return ResponseEntity.ok().body("Deu certo");
+            Usuario usuario = usuarioService.getUserByLogin(mached);
+
+            if(usuario != null){
+                String token = JwtUtil.GeraToken(usuario.getNome(), mached.getEmail());
+                return ResponseEntity.ok().body(token);
+            }else{
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro desconhecido");    
+            }
         }else{
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login ou senha inválidos");
         }
