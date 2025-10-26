@@ -8,9 +8,10 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-@RequiredArgsConstructor
 @NoArgsConstructor(force = true)
-public class User {
+@RequiredArgsConstructor
+public class Usuario
+ {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

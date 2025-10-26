@@ -20,6 +20,6 @@ public class Login {
 
     @OneToOne(mappedBy = "login")
     @JsonBackReference
-    private User user;
+    private Usuario user;
 
 }
