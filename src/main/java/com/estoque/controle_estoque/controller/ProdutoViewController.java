@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.estoque.controle_estoque.service.ProdutoService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class ProdutoViewController {
@@ -26,4 +29,13 @@ public class ProdutoViewController {
     public String login() {
         return "login";
     }
+
+    @PostMapping("/user/login")
+    public String UserLogin(@RequestBody String entity) {
+        
+        return entity;
+    }
+    
+
+
 }
