@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/layout :: head (title='Detalhes do Produto')"></head>
+
+  <body>
+    <div th:replace="fragments/sidebar :: sidebar_full ('produtos')"></div>
+
+    <div class="main-content container py-4">
+      <header class="main-header mb-4">
+        <h1 class="page-title">
+          Detalhes do Produto: <span th:text="${produto.nome}">Nome do Produto</span>
+        </h1>
+      </header>
+
+      <div class="details-container card p-3">
+        <div class="detail-group mb-2">
+          <strong>ID:</strong> <span th:text="${produto.id}">123</span>
+        </div>
+        <div class="detail-group mb-2">
+          <strong>Código de Barra:</strong>
+          <span th:text="${produto.codigoBarra}">874598123</span>
+        </div>
+        <div class="detail-group mb-2">
+          <strong>Descrição:</strong>
+          <span th:text="${produto.descricao}">Produto com alta qualidade e durabilidade.</span>
+        </div>
+        <div class="detail-group mb-2">
+          <strong>Quantidade em Estoque:</strong>
+          <span th:text="${produto.quantidade}">150</span>
+        </div>
+        <div class="detail-group mb-2">
+          <strong>Custo Unitário:</strong>
+          <span th:text="${#numbers.formatCurrency(produto.custo)}">R$ 10.00</span>
+        </div>
+        <div class="detail-group mb-2">
+          <strong>Preço de Venda:</strong>
+          <span th:text="${#numbers.formatCurrency(produto.precoVenda)}">R$ 15.00</span>
+        </div>
+
+        <div class="form-actions mt-4 d-flex gap-2">
+          <a
+            th:href="@{/produtos/editar/{id}(id=${produto.id})}"
+            class="btn btn-primary btn-sm"
+          >
+            <i class="fas fa-pen"></i> Editar
+          </a>
+
+          <!-- botão chama a função JS que popula e abre o modal -->
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            th:attr="data-id=${produto.id}, data-nome=${produto.nome}"
+            onclick="prepararModalExclusao(this)"
+          >
+            <i class="fas fa-trash"></i> Excluir
+          </button>
+
+          <a th:href="@{/produtos}" class="btn btn-secondary btn-sm">
+            <i class="fas fa-arrow-circle-left"></i> Voltar à Lista
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de confirmação -->
+    <div
+      class="modal fade"
+      id="confirmacaoExclusaoModal"
+      tabindex="-1"
+      aria-labelledby="modalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalLabel">Confirmar Exclusão</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <div class="modal-body">
+            Tem certeza que deseja excluir o produto:
+            <strong id="nomeProdutoExclusao"></strong> (ID:
+            <span id="idProdutoExclusao"></span>)?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+
+            <!-- botão de confirmação: atualizamos o href dinamicamente -->
+            <a href="#" id="btnConfirmarExclusao" class="btn btn-danger"
+              >Excluir Produto</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script de manipulação do modal -->
+    <script>
+      /**
+       * Preenche os campos do modal e abre o modal programaticamente (Bootstrap 5).
+       * Recebe o botão clicado (this) para ler data attributes data-id e data-nome.
+       */
+      function prepararModalExclusao(botao) {
+        if (!botao) return;
+
+        const id = botao.getAttribute("data-id");
+        const nome = botao.getAttribute("data-nome");
+
+        const nomeElemento = document.getElementById("nomeProdutoExclusao");
+        const idElemento = document.getElementById("idProdutoExclusao");
+        const btnConfirmar = document.getElementById("btnConfirmarExclusao");
+
+        if (nomeElemento) nomeElemento.textContent = nome || "";
+        if (idElemento) idElemento.textContent = id || "";
+
+        if (btnConfirmar) {
+          // Ajuste a URL de confirmação conforme sua rota (GET/POST). Aqui usa GET estilo /produtos/excluir/{id}
+          btnConfirmar.setAttribute("href", "/produtos/excluir/" + encodeURIComponent(id));
+        }
+
+        // Abre o modal via API do Bootstrap 5 (garante que campos estão preenchidos)
+        const modalEl = document.getElementById("confirmacaoExclusaoModal");
+        if (!modalEl) {
+          console.warn("Modal não encontrado no DOM: #confirmacaoExclusaoModal");
+          return;
+        }
+
+        // Se bootstrap estiver disponível (carregado pelo fragment scripts), usa a API
+        if (typeof bootstrap !== "undefined" && bootstrap.Modal) {
+          const modal = new bootstrap.Modal(modalEl);
+          modal.show();
+        } else {
+          // Fallback: tenta disparar evento para abrir com atributos data-bs (se estiver configurado)
+          console.warn("Bootstrap não disponível no momento. Verifique se bootstrap.bundle.min.js foi carregado.");
+          // Como fallback visual mínimo, adicionamos classe show (não é o ideal, mas evita nada abrir)
+          modalEl.classList.add("show");
+          modalEl.style.display = "block";
+          modalEl.removeAttribute("aria-hidden");
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Verificar se bootstrap foi carregado
+  console.log("typeof bootstrap =", typeof bootstrap);
+</script>
+
+    <!-- inclui os scripts definidos no seu fragments/layout :: scripts -->
+    <div th:replace="fragments/layout :: scripts"></div>
+  </body>
+</html>

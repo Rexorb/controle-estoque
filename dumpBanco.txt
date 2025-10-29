@@ -1,0 +1,80 @@
+-- =================================================================
+-- 1. TABELAS DE ESTRUTURA E USUÁRIOS (SETUP GERAL)
+-- =================================================================
+
+-- Tabela principal para a Conta/Empresa/Pessoa Jurídica que usa o sistema (Grapium)
+-- Corresponde à tb_user/tb_usuario (Dados principais)
+CREATE TABLE tb_usuario (
+    id_usuario SERIAL PRIMARY KEY,
+    nm_fantasia VARCHAR(100) NOT NULL,
+    cd_cnpj VARCHAR(18) UNIQUE NOT NULL, -- Ex: 00.000.000/0001-00
+    id_status INTEGER NOT NULL DEFAULT 1, -- 1=Ativo, 2=Inativo (Pode ser uma FK para tb_status no futuro)
+    dt_cadastro TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabela para os dados de login e segurança
+-- Corresponde à tb_login (Credenciais)
+CREATE TABLE tb_login (
+    id_login SERIAL PRIMARY KEY,
+    id_usuario INTEGER UNIQUE REFERENCES tb_usuario(id_usuario) NOT NULL,
+    nm_login VARCHAR(50) UNIQUE NOT NULL,
+    ds_senha_hash VARCHAR(60) NOT NULL -- Usar bcrypt (60 caracteres)
+);
+
+-- Tabela para o Endereço (Separada para flexibilidade)
+-- Relacionada à tb_usuario (Endereço da sede da Conta)
+CREATE TABLE tb_endereco (
+    id_endereco SERIAL PRIMARY KEY,
+    id_usuario INTEGER UNIQUE REFERENCES tb_usuario(id_usuario) NOT NULL,
+    cd_cep VARCHAR(9), -- Ex: 00000-000 (ViaCEP)
+    nm_rua VARCHAR(100),
+    nr_logradouro VARCHAR(20),
+    ds_complemento VARCHAR(100),
+    nm_bairro VARCHAR(100),
+    nm_cidade VARCHAR(100),
+    sg_estado VARCHAR(2)
+);
+
+
+-- =================================================================
+-- 2. TABELAS DO MÓDULO DE ESTOQUE
+-- =================================================================
+
+-- Tabela de Fornecedores
+-- Corresponde à tb_fornecedor
+CREATE TABLE tb_fornecedor (
+    id_fornecedor SERIAL PRIMARY KEY,
+    nm_fornecedor VARCHAR(100) NOT NULL,
+    ds_fornecedor VARCHAR(255),
+    cd_cnpj VARCHAR(18) UNIQUE NOT NULL,
+    nr_telefone VARCHAR(15),
+    ds_email VARCHAR(100)
+    -- O endereço do fornecedor poderia ser uma nova tabela tb_endereco_fornecedor no futuro
+);
+
+-- Tabela de Produtos (Seu core de estoque)
+-- Corresponde à tb_produto
+CREATE TABLE tb_produto (
+    id_produto SERIAL PRIMARY KEY,
+    id_fornecedor INTEGER REFERENCES tb_fornecedor(id_fornecedor),
+    cd_barraproduto VARCHAR(50) UNIQUE,
+    nm_produto VARCHAR(150) NOT NULL,
+    ds_produto VARCHAR(255),
+    -- Quantidade atualizada (o coração do estoque)
+    qt_produto INTEGER NOT NULL DEFAULT 0 CHECK (qt_produto >= 0),
+    -- Preços separados para custo e venda (para rastrear margem de lucro)
+    vl_custo NUMERIC(10, 2) NOT NULL,
+    vl_venda NUMERIC(10, 2) NOT NULL
+);
+
+-- Tabela de Movimentações (Obrigatória para controle de estoque)
+-- Registra todas as alterações no estoque de tb_produto
+CREATE TABLE tb_movimentacao (
+    id_movimentacao SERIAL PRIMARY KEY,
+    id_produto INTEGER REFERENCES tb_produto(id_produto) NOT NULL,
+    id_user INTEGER REFERENCES tb_usuario(id_usuario) NOT NULL, -- Quem fez a movimentação
+    dt_movimentacao TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    tp_movimentacao VARCHAR(10) NOT NULL, -- 'ENTRADA' ou 'SAIDA'
+    qt_alterada INTEGER NOT NULL,
+    ds_motivo VARCHAR(255)
+);

@@ -285,3 +285,13 @@ label {
 }
 
 /* O botão primário (.btn-primary-action) já está definido no app.css */
+
+
+/* Correção de Z-Index para Modais do Bootstrap (se necessário) */
+.modal {
+    z-index: 10000 !important; 
+}
+
+.modal-backdrop {
+    z-index: 9999 !important; 
+}

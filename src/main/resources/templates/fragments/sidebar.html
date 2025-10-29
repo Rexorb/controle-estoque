@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <body>
-    <div th:fragment="sidebar_full (paginaAtiva)" class="sidebar">
-        <div class="sidebar-header">
-            <img
-                th:src="@{/images/Grapium-Logo.png}"
-                class="img-logo-listar"
-                alt="Logo Grapium"
-            />
-        </div>
+<div th:fragment="sidebar_full (paginaAtiva)" class="sidebar">
+    <div class="sidebar-header">
+        <img
+            th:src="@{/images/Grapium-Logo.png}"
+            class="img-logo-listar"
+            alt="Logo Grapium"
+        />
+    </div>
 
-        <nav class="sidebar-nav">
-            <a href="/dashboard" th:class="${paginaAtiva == 'dashboard' ? 'nav-link active' : 'nav-link'}">
-                <i class="fas fa-th-large"></i> Dashboard
-            </a>
+    <nav class="sidebar-nav">
+        <a href="/dashboard" th:class="${paginaAtiva == 'dashboard' ? 'nav-link active' : 'nav-link'}">
+            <i class="fas fa-th-large"></i> Dashboard
+        </a>
 
-            <a th:href="@{/produtos}" th:class="${paginaAtiva == 'produtos' ? 'nav-link active' : 'nav-link'}">
-                <i class="fa-solid fa-cart-shopping"></i> Produtos
-            </a>
+        <a th:href="@{/produtos}" th:class="${paginaAtiva == 'produtos' ? 'nav-link active' : 'nav-link'}">
+            <i class="fa-solid fa-cart-shopping"></i> Produtos
+        </a>
 
-            <a href="/movimentacoes" th:class="${paginaAtiva == 'movimentacoes' ? 'nav-link active' : 'nav-link'}">
-                <i class="fas fa-exchange-alt"></i> Movimentações
-            </a>
+        <a href="/movimentacoes" th:class="${paginaAtiva == 'movimentacoes' ? 'nav-link active' : 'nav-link'}">
+            <i class="fas fa-exchange-alt"></i> Movimentações
+        </a>
 
-            <a href="/relatorios" th:class="${paginaAtiva == 'relatorios' ? 'nav-link active' : 'nav-link'}">
-                <i class="fas fa-chart-bar"></i> Relatórios
-            </a>
+        <a href="/relatorios" th:class="${paginaAtiva == 'relatorios' ? 'nav-link active' : 'nav-link'}">
+            <i class="fas fa-chart-bar"></i> Relatórios
+        </a>
 
-            <a href="/configuracoes" th:class="${paginaAtiva == 'configuracoes' ? 'nav-link active' : 'nav-link'}">
-                <i class="fas fa-cog"></i> Configurações
-            </a>
-        </nav>
+        <a href="/configuracoes" th:class="${paginaAtiva == 'configuracoes' ? 'nav-link active' : 'nav-link'}">
+            <i class="fas fa-cog"></i> Configurações
+        </a>
+    </nav>
 
-        <div class="sidebar-footer">
-            <div class="user-info">
-                <div class="user-avatar">RH</div>
-                <div>
-                    <div class="user-name">Roberto H.</div>
-                    <div class="user-role" style="font-size: 0.8rem; opacity: 0.7">
-                        Administrador
-                    </div>
+    <div class="sidebar-footer">
+        <div class="user-info">
+            <div class="user-avatar">RH</div>
+            <div>
+                <div class="user-name">Roberto H.</div>
+                <div class="user-role" style="font-size: 0.8rem; opacity: 0.7">
+                    Administrador
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>

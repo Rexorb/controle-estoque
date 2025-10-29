@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <head
-      th:replace="fragments/layout :: head (title='Cadastro de Produto')"
-    ></head>
+    <head th:replace="fragments/layout :: head (title='Editar Produto')"></head>
   </head>
-
   <body>
     <div th:replace="fragments/sidebar :: sidebar_full ('produtos')"></div>
 
     <div class="main-content">
       <header class="main-header">
-        <h1 class="page-title">Cadastrar Novo Produto</h1>
+        <h1 class="page-title">Editar Produto</h1>
       </header>
 
       <div class="form-container">
@@ -20,9 +17,10 @@
           th:object="${produto}"
           method="post"
         >
+          <input type="hidden" th:field="*{id}" />
+
           <div class="form-group">
             <label for="codigoBarra">Código de Barra</label>
-
             <input
               type="text"
               id="codigoBarra"
@@ -44,7 +42,6 @@
 
           <div class="form-group">
             <label for="descricaoProduto">Descrição</label>
-
             <input
               type="text"
               id="descricaoProduto"
@@ -55,7 +52,6 @@
 
           <div class="form-group">
             <label for="quantidade">Quantidade em Estoque</label>
-
             <input
               type="number"
               id="quantidade"
@@ -77,10 +73,8 @@
               required
             />
           </div>
-
           <div class="form-group">
             <label for="precoVenda">Preço de Venda</label>
-
             <input
               type="text"
               placeholder="R$"
@@ -94,18 +88,16 @@
 
           <div class="form-actions" style="margin-top: 2rem">
             <button type="submit" class="btn-primary-action">
-              <i class="fas fa-save"></i> Salvar Produto
+              <i class="fas fa-save"></i> Salvar Alterações
             </button>
 
             <a th:href="@{/produtos}" class="btn-secondary-action">
               <i class="fas fa-times-circle"></i> Cancelar
             </a>
-            <input type="hidden" th:field="*{id}" />
           </div>
         </form>
       </div>
     </div>
-
     <div th:replace="fragments/layout :: scripts"></div>
   </body>
 </html>

@@ -2,32 +2,100 @@ package com.estoque.controle_estoque.model;
 
 import java.math.BigDecimal;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id; // Importe o BigDecimal
+import jakarta.persistence.Id;
+import jakarta.persistence.Table; 
 
 @Entity
+@Table(name = "tb_produto")
 public class Produto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; // id_produto
 
+    // Mapeando os novos campos do formulário para o banco de dados
+
+    @Column(name = "cd_barraproduto")
+    private String codigoBarra;
+
+    @Column(name = "nm_produto", nullable = false)
     private String nome;
-    private int quantidade;
-    private BigDecimal preco; // NOVO CAMPO ADICIONADO AQUI!
 
-    // Getters e setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    @Column(name = "ds_produto")
+    private String descricao;
 
-    public String getNome() { return nome; }
-    public void setNome(String nome) { this.nome = nome; }
+    @Column(name = "qt_produto", nullable = false)
+    private Integer quantidade;
 
-    public int getQuantidade() { return quantidade; }
-    public void setQuantidade(int quantidade) { this.quantidade = quantidade; }
+    @Column(name = "vl_custo", nullable = false)
+    private BigDecimal custo; // vl_custo
 
-    // NOVOS GETTER E SETTER PARA PRECO
-    public BigDecimal getPreco() { return preco; }
-    public void setPreco(BigDecimal preco) { this.preco = preco; }
+    @Column(name = "vl_venda", nullable = false)
+    private BigDecimal precoVenda; // vl_venda
+
+    // Construtor vazio (obrigatório para JPA)
+    public Produto() {
+    }
+
+    // --- Getters e Setters (Todos os novos campos) ---
+    
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCodigoBarra() {
+        return codigoBarra;
+    }
+
+    public void setCodigoBarra(String codigoBarra) {
+        this.codigoBarra = codigoBarra;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Integer getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(Integer quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public BigDecimal getCusto() {
+        return custo;
+    }
+
+    public void setCusto(BigDecimal custo) {
+        this.custo = custo;
+    }
+
+    public BigDecimal getPrecoVenda() {
+        return precoVenda;
+    }
+
+    public void setPrecoVenda(BigDecimal precoVenda) {
+        this.precoVenda = precoVenda;
+    }
 }

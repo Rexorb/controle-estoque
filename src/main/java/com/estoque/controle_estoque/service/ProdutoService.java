@@ -1,6 +1,7 @@
 package com.estoque.controle_estoque.service;
 
 import java.util.List;
+import java.util.Optional; // <<<< NOVO: Necessário para o método findById
 
 import org.springframework.stereotype.Service;
 
@@ -18,6 +19,12 @@ public class ProdutoService {
 
     public List<Produto> listarTodos() {
         return repository.findAll();
+    }
+
+    // Método ADICIONADO: Necessário para o método editarProduto no Controller
+    public Optional<Produto> buscarPorId(Long id) {
+        // O método findById é fornecido pelo JpaRepository e retorna um Optional<Produto>
+        return repository.findById(id);
     }
 
     public Produto salvar(Produto produto) {

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,6 +47,34 @@ public class ProdutoController {
         // Redireciona o usuário de volta para a tela de listagem
         return "redirect:/produtos";
     }
+// 4. Rota de Edição (GET /produtos/editar/{id}) <<< NOVO
+    @GetMapping("/editar/{id}")
+    public String editarProduto(@PathVariable("id") Long id, Model model) {
+        Produto produto = produtoService.buscarPorId(id)
+            .orElseThrow(() -> new IllegalArgumentException("ID de produto inválido:" + id));
 
-    // TODO: Adicionar aqui as rotas de Edição e Exclusão futuramente
+        model.addAttribute("produto", produto);
+        return "produtos/editar"; 
+    }
+    // 5. Rota de Exclusão (GET /produtos/excluir/{id}) <<< NOVO
+    @GetMapping("/excluir/{id}")
+    public String excluirProduto(@PathVariable("id") Long id) {
+        produtoService.deletar(id);
+        return "redirect:/produtos";
+    }
+    // 6. Rota de Detalhes (GET /produtos/detalhes/{id}) <<< NOVO
+    // Exibe a tela de detalhes completos do produto
+    @GetMapping("/detalhes/{id}")
+    public String exibirDetalhesProduto(@PathVariable("id") Long id, Model model) {
+        // Usa o ProdutoService para buscar o produto
+        Produto produto = produtoService.buscarPorId(id)
+            .orElseThrow(() -> new IllegalArgumentException("ID de produto inválido:" + id));
+
+        // Adiciona o produto ao Model para ser exibido no template
+        model.addAttribute("produto", produto);
+        
+        // Retorna o template de detalhes
+        return "produtos/detalhes"; 
+    }
+    
 }
