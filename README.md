@@ -1,15 +1,12 @@
-# 🍇 Grapium: Sistema de Controle de Estoque
+# 🍇 Grapium: Sistema de Controle de Estoque<br> 
+## Versão com ![Docker](https://img.shields.io/badge/docker-257bd6?style=for-the-badge&logo=docker&logoColor=white)<br>
 Sistema robusto e moderno para gestão de estoque e movimentações, desenvolvido com a stack Java Spring Boot e Thymeleaf.
-
-![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![Tecnologias](https://imgs.shields.io/badge/Tecnologias-Spring%20Boot%20|%20Thymeleaf%20|%20PostgreSQL-4D78B2)
-![Licença](https://img.shields.io/badge/Licença-MIT-green)
 
 ## 👤 Desenvolvedores
 | Nome | Função |
 | :--- | :--- |
-| **Roberto Henrique dos Santos** | Desenvolvedor Full-Stack |
-| **Ruan Santos** | Desenvolvedor Full-Stack |
+| **Roberto Henrique dos Santos** | Desenvolvedor Front-end |
+| **Ruan Santos** | Desenvolvedor Back-end |
 
 ---
 
@@ -37,21 +34,21 @@ Certifique-se de ter instalado:
 ### Execução da Aplicação
 Clone o repositório e execute a aplicação via Maven Wrapper:
 
-```bash
+bash
 git clone https://github.com/Rexorb/controle-estoque.git 
 cd controle-estoque
 ./mvnw spring-boot:run
 
-🌐 Mapeamento de Rotas (Endpoints)
+## 🌐 Mapeamento de Rotas (Endpoints)
 
-🏠 Páginas Gerais e Dashboard
+## 🏠 Páginas Gerais e Dashboard
 
 Método	Rota	Descrição	Status	Acesso
 GET	/	Redirecionamento para a Dashboard principal.	OK	Autenticado
 GET	/dashboard	Página de visão geral do sistema.	A fazer	Autenticado
 GET	/sobre	Informações sobre o sistema.	A fazer	Público
 
-📦 Módulo de Produtos (CRUD em Andamento)
+## 📦 Módulo de Produtos (CRUD em Andamento)
 
 Reflete a estrutura que está sendo implementada no ProdutoController.
 Método	Rota	Descrição	Status	Acesso
@@ -62,14 +59,14 @@ GET	/produtos/editar/{id}	Exibe o formulário para edição de um produto.	A faz
 POST	/produtos/atualizar/{id}	Atualiza um produto existente. (Melhor prática: usar POST/PUT).	A fazer	Autenticado
 GET	/produtos/excluir/{id}	Remove um produto do estoque. (Melhor prática: usar POST/DELETE).	A fazer	Autenticado
 
-🔒 Autenticação
+## 🔒 Autenticação
 
 Método	Rota	Descrição	Status	Acesso
 GET	/login	Página de login padrão.	A fazer	Público
 POST	/login	Processa as credenciais de login.	A fazer	Público
 POST	/logout	Encerra a sessão atual.	A fazer	Autenticado
 
-🛠️ API de Serviços Externos
+## 🛠️ API de Serviços Externos
 
 Método	Rota	Descrição	Status	Acesso
 GET	/api/cep/{cep}	Consulta endereço usando a API ViaCEP.	A fazer	Autenticado
