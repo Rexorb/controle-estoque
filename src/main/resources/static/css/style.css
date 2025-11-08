@@ -6,8 +6,11 @@
 :root {
   --purple-main: #432a5b; /* O roxo escuro do painel esquerdo */
   --purple-light: #7960ff;
-  --font-logo: "KyivType Sans", sans-serif; /* Confirme se esta fonte está carregada! */
-  --font-slogan: "Inter", sans-serif;
+  --green-mush: #3A4541;
+  --lightgreen-mush: #A6BBAB;
+  --verlightgreen-mush: #C7D3AB;
+  /*--font-logo: "KyivType Sans", sans-serif; /* Confirme se esta fonte está carregada! */
+  /*--font-slogan: "Inter", sans-serif;*/
   --font-body: "Jost", sans-serif;
   --font-details: "Roboto Mono", "sans-serif";
 }
