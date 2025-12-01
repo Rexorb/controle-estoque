@@ -1,7 +1,7 @@
 -- =================================================================
 -- 1. TABELAS DE ESTRUTURA E USUÁRIOS (SETUP GERAL)
 -- =================================================================
-
+-- https://claude.ai/chat/8a64bf47-db59-4f3a-9e54-039dfef3aa14
 -- Tabela principal para a Conta/Empresa/Pessoa Jurídica que usa o sistema (Grapium)
 -- Corresponde à tb_user/tb_usuario (Dados principais)
 CREATE TABLE tb_usuario (

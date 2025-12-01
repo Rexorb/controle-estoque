@@ -56,12 +56,6 @@
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <!-- Banco H2 (Memória)
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>-->
 
         <!-- Spring Boot DevTools (para hot reload, opcional) -->
         <dependency>

@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table; 
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_produto")
@@ -15,9 +15,8 @@ public class Produto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // id_produto
-
-    // Mapeando os novos campos do formulário para o banco de dados
+    @Column(name = "id_produto")
+    private Long id;
 
     @Column(name = "cd_barraproduto")
     private String codigoBarra;
@@ -32,17 +31,14 @@ public class Produto {
     private Integer quantidade;
 
     @Column(name = "vl_custo", nullable = false)
-    private BigDecimal custo; // vl_custo
+    private BigDecimal custo;
 
     @Column(name = "vl_venda", nullable = false)
-    private BigDecimal precoVenda; // vl_venda
+    private BigDecimal precoVenda;
 
-    // Construtor vazio (obrigatório para JPA)
-    public Produto() {
-    }
+    public Produto() {}
 
-    // --- Getters e Setters (Todos os novos campos) ---
-    
+    // Getters e Setters
     public Long getId() {
         return id;
     }
@@ -58,7 +54,7 @@ public class Produto {
     public void setCodigoBarra(String codigoBarra) {
         this.codigoBarra = codigoBarra;
     }
-    
+
     public String getNome() {
         return nome;
     }

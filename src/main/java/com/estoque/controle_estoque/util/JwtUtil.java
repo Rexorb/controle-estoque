@@ -3,7 +3,7 @@ package com.estoque.controle_estoque.util;
 import java.security.Key;
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
